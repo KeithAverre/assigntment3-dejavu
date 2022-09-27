@@ -18,7 +18,7 @@
     </head>
     <form action="{% url 'baseball:standings' %}" method="get">
             <label for="dateid">Date to view:</label>
-            <input type="date" id="dateid" name="date" value="{{ date }}">
+            <input type="date" id="dateid" name="date" value="{{ date_str }}">
         <label for="league" >League to view:</label>
         <select id="league" name="league">
             <option value="AL">American League</option>
@@ -28,7 +28,7 @@
         </form>
     <p></p>
     <body>
-        <h1>{% if league == "AL" %} American League
+        <h1>{% if league == "AL" %}American League
             {% elif league == "NL" %}National League
             {% endif %}<br>Game Record of
             <u>{{ date }}</u>

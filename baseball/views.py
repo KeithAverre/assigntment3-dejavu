@@ -17,11 +17,11 @@ def standings(request):
         d = datetime.strptime(date_str, '%Y-%m-%d').date()
         if util.valid_date(d):
             standings = util.standings(d, league=league_play)
-            context = {"standings": standings, "date": d, "league":league_play}
+            context = {"standings": standings, "date": d, "league":league_play, "date_str":date_str}
             return render(request, "baseball/standings.html", context)
         elif util.after_season(d): #if last season day or after
             standings = util.standings(util.end_of_season(), league=league_play)
-            context = {"standings": standings, "date": util.end_of_season(), "end": "F ", "league":league_play}
+            context = {"standings": standings, "date": util.end_of_season(), "end": "F ", "league":league_play, "date_str": date_str}
             return render(request, "baseball/standings.html", context)
         else:
             return render(request,"baseball/index.html", {"errorMsg" :"Invalid date entered, please try again."})
